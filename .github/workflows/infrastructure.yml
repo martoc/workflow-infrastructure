@@ -4,7 +4,6 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-22.04
-
     container:
       image: martoc/cloudformation-tools:0.1.0
     steps:
