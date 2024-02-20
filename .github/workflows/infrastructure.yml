@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     container:
-      image: martoc/cloudformation-tools:0.0.6
+      image: martoc/cloudformation-tools:0.1.0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -16,6 +16,11 @@ jobs:
       - name: Lint
         run: |
           cfn-lint src/cloudformation/*.yaml
+      - name: Check AWS Cloudformation template format
+        run: |
+          for FILE in src/cloudformation/*.yaml; do
+            rain fmt --verify $FILE
+          done
   build:
     needs: [validate]
     runs-on: ubuntu-22.04

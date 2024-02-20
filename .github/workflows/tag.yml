@@ -10,19 +10,6 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 10
-          fetch-tags: true
-      - name: Tag
-        uses: martoc/action-tag@main
-        env:
-          PERSONAL_GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-      - name: Release on GitHub
-        uses: martoc/action-release@main
+  github-actions:
+    uses: martoc/workflow-github-actions/.github/workflows/github-actions.yml@main
+    secrets: inherit
