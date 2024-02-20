@@ -1,0 +1,33 @@
+on:
+  workflow_call:
+
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+
+    container:
+      image: martoc/cloudformation-tools:0.0.6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+          fetch-tags: true
+      - name: Lint
+        run: |
+          cfn-lint src/cloudformation/*.yaml
+  build:
+    needs: [validate]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+          fetch-tags: true
+      - name: Tag
+        uses: martoc/action-tag@main
+        env:
+          PERSONAL_GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+      - name: Release on GitHub
+        uses: martoc/action-release@main
