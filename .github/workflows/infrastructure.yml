@@ -31,7 +31,5 @@ jobs:
           fetch-tags: true
       - name: Tag
         uses: martoc/action-tag@main
-        env:
-          PERSONAL_GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
       - name: Release on GitHub
         uses: martoc/action-release@main
