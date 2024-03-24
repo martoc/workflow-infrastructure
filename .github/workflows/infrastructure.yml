@@ -32,4 +32,4 @@ jobs:
       - name: Tag
         uses: martoc/action-tag@v0
       - name: Release on GitHub
-        uses: martoc/action-release@main
+        uses: martoc/action-release@v0
