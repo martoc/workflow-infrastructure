@@ -21,15 +21,39 @@ jobs:
       - name: Lint
         if: ${{ !inputs.skip-lint }}
         run: |
-          for FILE in src/cloudformation/*.yaml; do
-            cfn-lint $FILE
-          done
+          if [ -d src ]; then
+            if [ -d src/cloudformation/ ]; then
+              if [ "$(find src/cloudformation -maxdepth 1 -type f -name '*.yaml' -print -quit)" ]; then
+                for FILE in src/cloudformation/*.yaml; do
+                  cfn-lint $FILE
+                done
+              else
+                echo "No Cloudformation templates found"
+              fi
+            else
+              echo "No Cloudformation directory found"
+            fi
+          else
+            echo "No source code found"
+          fi
       - name: Check AWS Cloudformation template format
         if: ${{ !inputs.skip-format }}
         run: |
-          for FILE in src/cloudformation/*.yaml; do
-            rain fmt --verify $FILE
-          done
+          if [ -d src ]; then
+            if [ -d src/cloudformation/ ]; then
+              if [ "$(find src/cloudformation -maxdepth 1 -type f -name '*.yaml' -print -quit)" ]; then
+                for FILE in src/cloudformation/*.yaml; do
+                  rain fmt --verify $FILE
+                done
+              else
+                echo "No Cloudformation templates found"
+              fi
+            else
+              echo "No Cloudformation directory found"
+            fi
+          else
+            echo "No source code found"
+          fi
   build:
     needs: [validate]
     runs-on: ubuntu-22.04
