@@ -19,11 +19,11 @@ jobs:
           fetch-depth: 10
           fetch-tags: true
       - name: Lint
-        if: ${{ !github.event.inputs.skip-lint }}
+        if: ${{ !inputs.skip-lint }}
         run: |
           cfn-lint src/cloudformation/*.yaml
       - name: Check AWS Cloudformation template format
-        if: ${{ !github.event.inputs.skip-format }}
+        if: ${{ !inputs.skip-format }}
         run: |
           for FILE in src/cloudformation/*.yaml; do
             rain fmt --verify $FILE
