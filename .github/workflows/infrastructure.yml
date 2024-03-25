@@ -1,6 +1,12 @@
 on:
   workflow_call:
-
+    inputs:
+      skip-lint:
+        required: false
+        type: boolean
+      skip-format:
+        required: false
+        type: boolean
 jobs:
   validate:
     runs-on: ubuntu-22.04
@@ -13,9 +19,11 @@ jobs:
           fetch-depth: 10
           fetch-tags: true
       - name: Lint
+        if: ${{ !github.event.inputs.skip-lint }}
         run: |
           cfn-lint src/cloudformation/*.yaml
       - name: Check AWS Cloudformation template format
+        if: ${{ !github.event.inputs.skip-format }}
         run: |
           for FILE in src/cloudformation/*.yaml; do
             rain fmt --verify $FILE
