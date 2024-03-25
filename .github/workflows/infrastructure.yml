@@ -21,7 +21,9 @@ jobs:
       - name: Lint
         if: ${{ !inputs.skip-lint }}
         run: |
-          cfn-lint src/cloudformation/*.yaml
+          for FILE in src/cloudformation/*.yaml; do
+            cfn-lint $FILE
+          done
       - name: Check AWS Cloudformation template format
         if: ${{ !inputs.skip-format }}
         run: |
