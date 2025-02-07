@@ -11,7 +11,7 @@ jobs:
   validate:
     runs-on: ubuntu-24.04
     container:
-      image: martoc/cloudformation-tools:0.2.72
+      image: martoc/cloudformation-tools:0.2.73
     steps:
       - name: Checkout
         uses: actions/checkout@v4
