@@ -4,7 +4,7 @@
 
 This repository provides reusable GitHub Actions workflows for infrastructure projects.
 It simplifies the CI/CD workflow by automating validation and release processes using
-containerized tools.
+containerised tools.
 
 ## Available Workflows
 
@@ -19,7 +19,7 @@ The `terraform.yml` workflow is a callable workflow for Terraform-based infrastr
 
 #### Validate
 
-Runs Terraform validation using a containerized environment:
+Runs Terraform validation using a containerised environment:
 
 -   **Container**: `martoc/terraform-tools:1.1.0`
 -   **Runner**: `ubuntu-24.04`
@@ -80,7 +80,7 @@ The `cloudformation.yml` workflow is a callable workflow for CloudFormation-base
 
 #### Validate
 
-Runs CloudFormation validation using a containerized environment:
+Runs CloudFormation validation using a containerised environment:
 
 -   **Container**: `martoc/cloudformation-tools:0.2.89`
 -   **Runner**: `ubuntu-24.04`

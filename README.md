@@ -2,7 +2,7 @@
 
 # workflow-infrastructure
 
-Reusable GitHub Actions workflows for infrastructure projects. Provides standardized validation and release processes for Terraform and CloudFormation using containerized tools.
+Reusable GitHub Actions workflows for infrastructure projects. Provides standardised validation and release processes for Terraform and CloudFormation using containerised tools.
 
 ## Table of Content
 
