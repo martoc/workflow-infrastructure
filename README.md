@@ -1,8 +1,11 @@
-[![checks](https://github.com/martoc/workflow-github-actions/actions/workflows/tag.yml/badge.svg?branch=main&event=push)](https://github.com/martoc/workflow-github-actions/actions/workflows/tag.yml)
-![GitHub Latest Release)](https://img.shields.io/github/v/release/martoc/workflow-github-actions?logo=github)
+[![checks](https://github.com/martoc/workflow-infrastructure/actions/workflows/tag.yml/badge.svg?branch=main&event=push)](https://github.com/martoc/workflow-infrastructure/actions/workflows/tag.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![slack](https://img.shields.io/badge/slack-general-brightgreen.svg?logo=slack)](https://app.slack.com/messages/T8L8AAD3M/C8LBHLSVA)
 
-# workflow-github-actions
+# workflow-infrastructure
 
-[Documentation >>](./docs/index.md)
+A reusable GitHub Actions workflow for Terraform-based infrastructure projects. Provides standardized validation and release processes using containerized Terraform tools.
+
+## Table of Content
+
+* [Code Style](./docs/CODESTYLE.md)
+* [Usage](./docs/USAGE.md)
