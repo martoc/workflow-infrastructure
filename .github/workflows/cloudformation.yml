@@ -1,0 +1,29 @@
+on:
+  workflow_call:
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    container:
+      image: martoc/cloudformation-tools:0.2.89
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: validate
+        run: |
+          make validate
+  release:
+    needs: [validate]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 10
+          fetch-tags: true
+      - name: Tag
+        uses: martoc/action-tag@v0
+      - name: Release on GitHub
+        uses: martoc/action-release@v0
+        if: ${{ github.event_name != 'pull_request' }}
