@@ -17,6 +17,14 @@ The `terraform.yml` workflow is a callable workflow for Terraform-based infrastr
 
 ### Workflow Details
 
+#### Init
+
+Initialises the Terraform environment:
+
+-   **Container**: `martoc/terraform-tools:1.1.0`
+-   **Runner**: `ubuntu-24.04`
+-   **Command**: `make init`
+
 #### Validate
 
 Runs Terraform validation using a containerised environment:
@@ -58,16 +66,18 @@ jobs:
 
 Your repository must include:
 
-1.  A `Makefile` with a `validate` target
+1.  A `Makefile` with `init` and `validate` targets
 2.  Valid Terraform configuration files
 
 ### Example Makefile
 
 ```makefile
-.PHONY: validate
+.PHONY: init validate
+
+init:
+	terraform init -backend=false
 
 validate:
-	terraform init -backend=false
 	terraform validate
 	terraform fmt -check
 ```
@@ -77,6 +87,14 @@ validate:
 The `cloudformation.yml` workflow is a callable workflow for CloudFormation-based infrastructure projects.
 
 ### Workflow Details
+
+#### Init
+
+Initialises the CloudFormation environment:
+
+-   **Container**: `martoc/cloudformation-tools:0.2.89`
+-   **Runner**: `ubuntu-24.04`
+-   **Command**: `make init`
 
 #### Validate
 
@@ -119,13 +137,16 @@ jobs:
 
 Your repository must include:
 
-1.  A `Makefile` with a `validate` target
+1.  A `Makefile` with `init` and `validate` targets
 2.  Valid CloudFormation template files
 
 ### Example Makefile
 
 ```makefile
-.PHONY: validate
+.PHONY: init validate
+
+init:
+	@echo "Initialising CloudFormation environment"
 
 validate:
 	cfn-lint **/*.yaml
